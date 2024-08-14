@@ -10,7 +10,7 @@ const Navbar = () => {
     try {
       await signOutUser();
       toast.success("You have been logged out successfully.");
-    } catch (error) {
+    } catch {
       toast.error("An error occurred. Please try again.");
     }
   };
