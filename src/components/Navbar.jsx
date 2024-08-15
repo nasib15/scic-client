@@ -18,16 +18,18 @@ const Navbar = () => {
   return (
     <>
       <div className="sm:block hidden">
-        <div className="navbar bg-neutral-800 rounded-2xl">
+        <div className="navbar bg-neutral-800 rounded-2xl py-3">
           <div className="flex-1">
             <Link
-              className="flex-none rounded-md text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
-              to="/"
+              to={"/"}
+              className="flex items-center gap-2 text-xl font-semibold text-white"
+              href="#"
+              aria-label="Brand"
             >
-              <div className="flex items-center gap-2">
-                <img src={logo} alt="logo" className="w-16" />
-                <span className="text-white">ShopEase</span>
-              </div>
+              <img className="size-12 rounded-full" src={logo} alt="logo" />
+              <span className="text-2xl">
+                Shop<span className="text-lime-400">Ease</span>
+              </span>
             </Link>
           </div>
           <div className="flex-none">
@@ -80,16 +82,18 @@ const Navbar = () => {
         </div>
       </div>
       <div className="sm:hidden block ">
-        <div className="navbar bg-neutral-800 rounded-2xl ">
+        <div className="navbar bg-neutral-800 rounded-2xl py-3">
           <div className="navbar-start">
             <Link
-              className="flex-none rounded-md text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
-              to="/"
+              to={"/"}
+              className="flex items-center gap-2 text-xl font-semibold text-white"
+              href="#"
+              aria-label="Brand"
             >
-              <div className="flex items-center gap-2">
-                <img src={logo} alt="logo" className="w-16" />
-                <span className="text-white">ShopEase</span>
-              </div>
+              <img className="size-12 rounded-full" src={logo} alt="logo" />
+              <span className="text-2xl">
+                Shop<span className="text-lime-400">Ease</span>
+              </span>
             </Link>
           </div>
           <div className="navbar-end">

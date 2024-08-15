@@ -1,12 +1,19 @@
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div className="mx-auto max-w-7xl px-4">
-      <Navbar />
-      <Outlet />
-    </div>
+    <>
+      <div className="max-w-7xl mx-auto">
+        <ScrollRestoration />
+        <Navbar></Navbar>
+        <div className="min-h-[80vh] px-4">
+          <Outlet></Outlet>
+        </div>
+      </div>
+      <Footer></Footer>
+    </>
   );
 };
 
