@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import Home from "./page/Home";
 import Register from "./page/Register";
 import Login from "./page/Login";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       { path: "/register", element: <Register /> },
       {

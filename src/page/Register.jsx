@@ -6,8 +6,14 @@ import logo from "/logo.png";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const { createUser, updateProfileName, user, setUser, googleSignIn } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    updateProfileName,
+    user,
+    setUser,
+    googleSignIn,
+    setLoading,
+  } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState(null);
   const [loginError, setLoginError] = useState(null);
   const location = useLocation();
@@ -23,20 +29,19 @@ const Register = () => {
     const { name, email, password, image } = data;
 
     // Create user
-    createUser(email, password)
-      .then(() => {
-        // Update user profile
-        updateProfileName(name, image);
-        setUser({ ...user, displayName: name, photoURL: image });
-        toast.success("User registered successfully");
-        navigate(from);
-        return;
-      })
-      .catch((error) => {
-        setRegisterError(error.message);
-        toast.error(registerError);
-        return;
-      });
+    try {
+      await createUser(email, password);
+      await updateProfileName(name, image);
+      setUser({ ...user, displayName: name, photoURL: image });
+      toast.success("User registered successfully");
+      navigate(from);
+      setLoading(false);
+      return;
+    } catch (error) {
+      setRegisterError(error.message);
+      toast.error(registerError);
+      return;
+    }
   };
 
   // Google Sign in
