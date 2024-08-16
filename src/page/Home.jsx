@@ -17,7 +17,7 @@ const Home = () => {
     queryKey: ["products", sort, search, currentPage],
     queryFn: async () => {
       const { data } = await axiosFetch(
-        `/products?sort=${sort}&search=${search}&page=${currentPage}&limit=${6}`
+        `/products?sort=${sort}&search=${search}&page=${currentPage}`
       );
       return data;
     },
@@ -53,6 +53,7 @@ const Home = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           count={totalProducts}
+          products={productsData}
         />
       </div>
     </>

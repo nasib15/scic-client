@@ -1,33 +1,35 @@
 /* eslint-disable react/prop-types */
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 
-export default function Pagination({ count, currentPage = 1, setCurrentPage }) {
+export default function Pagination({
+  count,
+  currentPage = 1,
+  setCurrentPage,
+  products,
+}) {
   const totalPages = Math.ceil(count / 6);
   const pages = [...Array(totalPages).keys()];
-  console.log(currentPage, pages.length, pages);
+  console.log(currentPage, pages, products);
 
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-      <div className="flex flex-1 justify-between sm:hidden">
-        <a
-          href="#"
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
+      {/* <div className="flex flex-1 justify-between sm:hidden">
+        <button className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
           Previous
-        </a>
-        <a
-          href="#"
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
+        </button>
+        <button className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
           Next
-        </a>
-      </div>
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        </button>
+      </div> */}
+      <div className="flex flex-col md:flex-row sm:flex-1 items-center mx-auto md:justify-between gap-4">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">1</span> to{" "}
-            <span className="font-medium">6</span> of{" "}
-            <span className="font-medium">40</span> results
+            Showing{" "}
+            <span className="font-medium">{(currentPage - 1) * 6 + 1}</span> to{" "}
+            <span className="font-medium">
+              {currentPage * 6 <= 40 ? currentPage * 6 : 40}
+            </span>{" "}
+            of <span className="font-medium">40</span> results
           </p>
         </div>
         <div>
