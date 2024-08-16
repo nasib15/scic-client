@@ -5,23 +5,26 @@ import Loading from "../components/Loading";
 import Dropdown from "../components/Dropdown";
 import { useState } from "react";
 import SearchBox from "../components/SearchBox";
+import Pagination from "../components/Pagination";
 
 const Home = () => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const axiosFetch = useAxios();
   const { data: products, isLoading } = useQuery({
-    queryKey: ["products", sort, search],
+    queryKey: ["products", sort, search, currentPage],
     queryFn: async () => {
       const { data } = await axiosFetch(
-        `/products?sort=${sort}&search=${search}`
+        `/products?sort=${sort}&search=${search}&page=${currentPage}&limit=${6}`
       );
       return data;
     },
   });
 
-  console.log(search);
+  console.log(products);
+  const { products: productsData, totalProducts } = products || {};
 
   if (isLoading) return <Loading />;
 
@@ -37,13 +40,20 @@ const Home = () => {
       </div>
       {/* dropdown menu */}
       <div className="flex items-center mx-auto text-center mt-4 gap-4">
-        <SearchBox setSearch={setSearch} />
+        <SearchBox setSearch={setSearch} setSort={setSort} />
         <Dropdown setSort={setSort} />
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {products.map((product) => (
+        {productsData?.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
+      </div>
+      <div className="my-4">
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          count={totalProducts}
+        />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const SearchBox = ({ setSearch }) => {
+const SearchBox = ({ setSearch, setSort }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(e.target.search.value);
@@ -18,9 +18,11 @@ const SearchBox = ({ setSearch }) => {
           Search
         </button>
         <button
-          onClick={() => setSearch("")}
+          onClick={() => {
+            setSearch("");
+            setSort("");
+          }}
           className="badge py-[14px] px-3 bg-blue-400 "
-          type="submit"
         >
           Reset
         </button>
