@@ -1,37 +1,26 @@
-## Project Setup
+# Project Setup
 
-1. **React Router Setup:**
+## 1. **React Router Setup:**
 
 ```
 npm create vite@latest name-of-your-project -- --template react
 # follow prompts
 cd <your new project directory>
-npm install react-router-dom # always need this!
-npm install localforage match-sorter sort-by # only for this tutorial.
-npm run dev
+npm install react-router-dom
+npm install localforage match-sorter sort-by
 ```
 
-You should be able to visit the URL printed in the terminal:
+## 2. **Tailwind CSS and DaisyUI Setup:**
 
-```
- VITE v3.0.7  ready in 175 ms
-
-  ➜  Local:   http://127.0.0.1:5173/
-  ➜  Network: use --host to expose
-```
-
-2. **Tailwind CSS and DaisyUI Setup:**
-
-## Install Tailwind CSS
+### Install Tailwind CSS and DaisyUI:
 
 ```
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+npm i -D daisyui@latest
 ```
 
-## Configure your template paths
-
-# Add the paths to all of your template files in your tailwind.config.js file.
+### Add the paths to all of your template files in your tailwind.config.js file.
 
 ```
 /* eslint-disable no-undef */
@@ -45,7 +34,7 @@ export default {
 };
 ```
 
-## Add the @tailwind directives for each of Tailwind’s layers to your ./src/index.css file.
+### Add the @tailwind directives for each of Tailwind’s layers to your ./src/index.css file.
 
 ```
 @tailwind base;
@@ -53,13 +42,13 @@ export default {
 @tailwind utilities;
 ```
 
-## Start your build process
+## 3. **Lastly, start the server**
 
 ```
 npm run dev
 ```
 
-## To Run Locally
+# To Run Locally
 
 1. **Clone the repository:**
 
