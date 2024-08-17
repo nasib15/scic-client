@@ -12,6 +12,8 @@ import BrandDropdown from "../components/BrandDropdown";
 const Home = () => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const axiosFetch = useAxios();
@@ -19,13 +21,13 @@ const Home = () => {
     queryKey: ["products", sort, search, currentPage],
     queryFn: async () => {
       const { data } = await axiosFetch(
-        `/products?sort=${sort}&search=${search}&page=${currentPage}`
+        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}&brand=${brand}`
       );
       return data;
     },
   });
 
-  console.log(products);
+  console.log(category, brand);
   const { products: productsData, totalProducts } = products || {};
 
   if (isLoading) return <Loading />;
@@ -45,8 +47,8 @@ const Home = () => {
         <SearchBox setSearch={setSearch} setSort={setSort} />
         <div className="flex items-center gap-4">
           <Dropdown setSort={setSort} />
-          <CategoryDropdown />
-          <BrandDropdown />
+          <CategoryDropdown setCategory={setCategory} />
+          <BrandDropdown setBrand={setBrand} />
         </div>
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

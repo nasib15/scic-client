@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 import useAxios from "../hooks/useAxios";
 
-export default function CategoryDropdown() {
+export default function CategoryDropdown({ setCategory }) {
   const axiosFetch = useAxios();
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -12,7 +13,9 @@ export default function CategoryDropdown() {
     },
   });
 
-  console.log(categories);
+  const handleChange = (selectedOption) => {
+    setCategory(selectedOption.value);
+  };
 
   return (
     <Select
@@ -21,6 +24,7 @@ export default function CategoryDropdown() {
       options={categories}
       isSearchable={false}
       placeholder="Select a category"
+      onChange={handleChange}
     />
   );
 }

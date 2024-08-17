@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 import useAxios from "../hooks/useAxios";
 
-export default function BrandDropdown() {
+export default function BrandDropdown({ setBrand }) {
   const axiosFetch = useAxios();
   const { data: brands } = useQuery({
     queryKey: ["brands"],
@@ -11,8 +12,6 @@ export default function BrandDropdown() {
       return data;
     },
   });
-
-  console.log(brands);
 
   return (
     <Select
