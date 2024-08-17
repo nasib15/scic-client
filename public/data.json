@@ -1,0 +1,35 @@
+{
+  "brands": [
+    { "value": "dell", "label": "Dell" },
+    { "value": "ninja", "label": "Ninja" },
+    { "value": "apple", "label": "Apple" },
+    { "value": "dyson", "label": "Dyson" },
+    { "value": "fitbit", "label": "Fitbit" },
+    { "value": "canon", "label": "Canon" },
+    { "value": "sony", "label": "Sony" },
+    { "value": "lg", "label": "LG" },
+    { "value": "logitech", "label": "Logitech" },
+    { "value": "razer", "label": "Razer" },
+    { "value": "dji", "label": "DJI" },
+    { "value": "asus", "label": "ASUS" },
+    { "value": "google", "label": "Google" },
+    { "value": "breville", "label": "Breville" },
+    { "value": "microsoft", "label": "Microsoft" },
+    { "value": "samsung", "label": "Samsung" },
+    { "value": "mibro", "label": "Mibro" },
+    { "value": "garmin", "label": "Garmin" },
+    { "value": "bose", "label": "Bose" },
+    { "value": "gopro", "label": "GoPro" },
+    { "value": "nintendo", "label": "Nintendo" },
+    { "value": "jbl", "label": "JBL" },
+    { "value": "others", "label": "Others" }
+  ],
+  "categories": [
+    { "value": "electronics", "label": "Electronics" },
+    { "value": "home_kitchen", "label": "Home & Kitchen" },
+    { "value": "computers", "label": "Computers" },
+    { "value": "wearable", "label": "Wearable" },
+    { "value": "cameras", "label": "Cameras" },
+    { "value": "gaming", "label": "Gaming" }
+  ]
+}

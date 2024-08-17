@@ -6,6 +6,7 @@ import Dropdown from "../components/Dropdown";
 import { useState } from "react";
 import SearchBox from "../components/SearchBox";
 import Pagination from "../components/Pagination";
+import CategoryDropdown from "../components/CategoryDropdown";
 
 const Home = () => {
   const [sort, setSort] = useState("");
@@ -39,9 +40,12 @@ const Home = () => {
         </p>
       </div>
       {/* dropdown menu */}
-      <div className="flex items-center mx-auto text-center mt-4 gap-4">
+      <div className="flex lg:flex-row flex-col items-center mx-auto text-center mt-4 gap-4">
         <SearchBox setSearch={setSearch} setSort={setSort} />
-        <Dropdown setSort={setSort} />
+        <div className="flex items-center gap-4">
+          <Dropdown setSort={setSort} />
+          <CategoryDropdown />
+        </div>
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {productsData?.map((product) => (
