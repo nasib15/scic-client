@@ -58,12 +58,16 @@ const Home = () => {
             setCurrentPage={setCurrentPage}
             category={category}
             setBrand={setBrand}
+            setSort={setSort}
+            setSearch={setSearch}
           />
           <BrandDropdown
             setBrand={setBrand}
             setCurrentPage={setCurrentPage}
             brand={brand}
             setCategory={setCategory}
+            setSort={setSort}
+            setSearch={setSearch}
           />
         </div>
       </div>

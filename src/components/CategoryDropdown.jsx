@@ -8,6 +8,8 @@ export default function CategoryDropdown({
   setCategory,
   setCurrentPage,
   setBrand,
+  setSearch,
+  setSort,
 }) {
   const axiosFetch = useAxios();
   const { data: categories } = useQuery({
@@ -21,6 +23,8 @@ export default function CategoryDropdown({
   const handleChange = (selectedOption) => {
     setCategory(selectedOption.value);
     setBrand("");
+    setSort("");
+    setSearch("");
     setCurrentPage(1);
   };
 
