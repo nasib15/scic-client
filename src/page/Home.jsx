@@ -7,6 +7,7 @@ import { useState } from "react";
 import SearchBox from "../components/SearchBox";
 import Pagination from "../components/Pagination";
 import CategoryDropdown from "../components/CategoryDropdown";
+import BrandDropdown from "../components/BrandDropdown";
 
 const Home = () => {
   const [sort, setSort] = useState("");
@@ -45,6 +46,7 @@ const Home = () => {
         <div className="flex items-center gap-4">
           <Dropdown setSort={setSort} />
           <CategoryDropdown />
+          <BrandDropdown />
         </div>
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
