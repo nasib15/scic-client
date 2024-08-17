@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../components/ProductCard";
 import useAxios from "../hooks/useAxios";
@@ -18,19 +19,16 @@ const Home = () => {
 
   const axiosFetch = useAxios();
   const { data: products, isLoading } = useQuery({
-    queryKey: ["products", sort, search, currentPage, category],
+    queryKey: ["products", sort, search, currentPage, category, brand],
     queryFn: async () => {
       const { data } = await axiosFetch(
-        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}`
+        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}&brand=${brand}`
       );
       return data;
     },
   });
 
-  // console.log(category, brand);
   const { products: productsData, totalProducts } = products || {};
-
-  console.log(productsData);
 
   if (isLoading) return <Loading />;
 
@@ -38,7 +36,7 @@ const Home = () => {
     <>
       <div>
         <h1 className="mt-10 text-3xl font-bold text-center">Products</h1>
-        <p className="mx-auto text-center max-w-[70%] mt-4 text-gray-600">
+        <p className="mx-auto text-center md:max-w-[70%] mt-4 text-gray-600">
           Discover our diverse range of high-quality products, from cutting-edge
           electronics to stylish home essentials. Each item is carefully
           selected to meet your needs and enhance your lifestyle.
@@ -58,11 +56,22 @@ const Home = () => {
           <CategoryDropdown
             setCategory={setCategory}
             setCurrentPage={setCurrentPage}
+            category={category}
+            setBrand={setBrand}
           />
-          <BrandDropdown setBrand={setBrand} setCurrentPage={setCurrentPage} />
+          <BrandDropdown
+            setBrand={setBrand}
+            setCurrentPage={setCurrentPage}
+            brand={brand}
+            setCategory={setCategory}
+          />
         </div>
       </div>
-      <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <p className="text-red-600 text-center mt-4">
+        Multiple select doesn't work. So, don't have to waste time testing it.
+        But single select works. You can check (Category, Brand)
+      </p>
+      <div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {productsData?.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
