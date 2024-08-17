@@ -18,17 +18,19 @@ const Home = () => {
 
   const axiosFetch = useAxios();
   const { data: products, isLoading } = useQuery({
-    queryKey: ["products", sort, search, currentPage],
+    queryKey: ["products", sort, search, currentPage, category],
     queryFn: async () => {
       const { data } = await axiosFetch(
-        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}&brand=${brand}`
+        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}`
       );
       return data;
     },
   });
 
-  console.log(category, brand);
+  // console.log(category, brand);
   const { products: productsData, totalProducts } = products || {};
+
+  console.log(productsData);
 
   if (isLoading) return <Loading />;
 
@@ -44,11 +46,20 @@ const Home = () => {
       </div>
       {/* dropdown menu */}
       <div className="flex lg:flex-row flex-col items-center mx-auto text-center mt-4 gap-4">
-        <SearchBox setSearch={setSearch} setSort={setSort} />
+        <SearchBox
+          setSearch={setSearch}
+          setSort={setSort}
+          setCategory={setCategory}
+          setBrand={setBrand}
+          category={category}
+        />
         <div className="flex items-center gap-4">
-          <Dropdown setSort={setSort} />
-          <CategoryDropdown setCategory={setCategory} />
-          <BrandDropdown setBrand={setBrand} />
+          <Dropdown setSort={setSort} setCurrentPage={setCurrentPage} />
+          <CategoryDropdown
+            setCategory={setCategory}
+            setCurrentPage={setCurrentPage}
+          />
+          <BrandDropdown setBrand={setBrand} setCurrentPage={setCurrentPage} />
         </div>
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

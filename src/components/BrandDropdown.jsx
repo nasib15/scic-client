@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 import useAxios from "../hooks/useAxios";
 
-export default function BrandDropdown({ setBrand }) {
+export default function BrandDropdown({ setBrand, setCurrentPage }) {
   const axiosFetch = useAxios();
   const { data: brands } = useQuery({
     queryKey: ["brands"],

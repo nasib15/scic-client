@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-const SearchBox = ({ setSearch, setSort }) => {
+const SearchBox = ({ setSearch, setSort, setCategory, setBrand, category }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(e.target.search.value);
+    setCategory(category);
   };
 
   return (
@@ -21,6 +22,8 @@ const SearchBox = ({ setSearch, setSort }) => {
           onClick={() => {
             setSearch("");
             setSort("");
+            setCategory("");
+            setBrand("");
           }}
           className="badge py-[10px] px-3 bg-blue-400 "
         >

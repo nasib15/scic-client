@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 import useAxios from "../hooks/useAxios";
 
-export default function CategoryDropdown({ setCategory }) {
+export default function CategoryDropdown({ setCategory, setCurrentPage }) {
   const axiosFetch = useAxios();
   const { data: categories } = useQuery({
     queryKey: ["categories"],
@@ -15,7 +15,8 @@ export default function CategoryDropdown({ setCategory }) {
 
   const handleChange = (selectedOption) => {
     setCategory(selectedOption.value);
-  };
+    setCurrentPage(1);
+};
 
   return (
     <Select
