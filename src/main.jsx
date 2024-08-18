@@ -10,11 +10,13 @@ import Register from "./page/Register";
 import Login from "./page/Login";
 import PrivateRoute from "./routes/PrivateRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ErrorPage from "./page/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
