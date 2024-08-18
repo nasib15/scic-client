@@ -3,14 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 import useAxios from "../hooks/useAxios";
 
-export default function BrandDropdown({
-  brand,
-  setBrand,
-  setCurrentPage,
-  setCategory,
-  setSort,
-  setSearch,
-}) {
+export default function BrandDropdown({ setBrand, setCurrentPage }) {
   const axiosFetch = useAxios();
   const { data: brands } = useQuery({
     queryKey: ["brands"],
@@ -22,18 +15,13 @@ export default function BrandDropdown({
 
   const handleChange = (selectedOption) => {
     setBrand(selectedOption.value);
-    setCategory("");
-    setSort("");
-    setSearch("");
     setCurrentPage(1);
   };
 
   return (
     <Select
       className="basic-single"
-      classNamePrefix="Select"
       options={brands}
-      value={brand}
       isSearchable={false}
       placeholder="Select a brand"
       onChange={handleChange}

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "../components/ProductCard";
 import useAxios from "../hooks/useAxios";
@@ -9,6 +8,7 @@ import SearchBox from "../components/SearchBox";
 import Pagination from "../components/Pagination";
 import CategoryDropdown from "../components/CategoryDropdown";
 import BrandDropdown from "../components/BrandDropdown";
+import PriceRange from "../components/PriceRange";
 
 const Home = () => {
   const [sort, setSort] = useState("");
@@ -16,13 +16,15 @@ const Home = () => {
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState(0);
+  const [tooltipStyle, setTooltipStyle] = useState({ left: "50%", opacity: 0 });
 
   const axiosFetch = useAxios();
   const { data: products, isLoading } = useQuery({
-    queryKey: ["products", sort, search, currentPage, category, brand],
+    queryKey: ["products", sort, search, currentPage, category, brand, price],
     queryFn: async () => {
       const { data } = await axiosFetch(
-        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}&brand=${brand}`
+        `/products?sort=${sort}&search=${search}&page=${currentPage}&category=${category}&brand=${brand}&price=${price}`
       );
       return data;
     },
@@ -43,38 +45,30 @@ const Home = () => {
         </p>
       </div>
       {/* dropdown menu */}
-      <div className="flex lg:flex-row flex-col items-center mx-auto text-center mt-4 gap-4">
+      <div className="flex lg:flex-row flex-col items-center mx-auto text-center my-10 gap-4">
         <SearchBox
           setSearch={setSearch}
           setSort={setSort}
           setCategory={setCategory}
           setBrand={setBrand}
-          category={category}
+          setPrice={setPrice}
+          search={search}
         />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-col lg:flex-row">
           <Dropdown setSort={setSort} setCurrentPage={setCurrentPage} />
           <CategoryDropdown
             setCategory={setCategory}
             setCurrentPage={setCurrentPage}
-            category={category}
-            setBrand={setBrand}
-            setSort={setSort}
-            setSearch={setSearch}
           />
-          <BrandDropdown
-            setBrand={setBrand}
-            setCurrentPage={setCurrentPage}
-            brand={brand}
-            setCategory={setCategory}
-            setSort={setSort}
-            setSearch={setSearch}
+          <BrandDropdown setBrand={setBrand} setCurrentPage={setCurrentPage} />
+          <PriceRange
+            price={price}
+            setPrice={setPrice}
+            tooltipStyle={tooltipStyle}
+            setTooltipStyle={setTooltipStyle}
           />
         </div>
       </div>
-      <p className="text-red-600 text-center mt-4">
-        Multiple select doesn't work. So, don't have to waste time testing it.
-        But single select works. You can check (Category, Brand)
-      </p>
       <div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {productsData?.map((product) => (
           <ProductCard key={product._id} product={product} />
